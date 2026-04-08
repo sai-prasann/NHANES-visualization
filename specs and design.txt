@@ -1,0 +1,66 @@
+
+1-In general
+
+*Use laravel (version 11, no use of docker, etc..), php and mysql
+*Use spatie laravel extension for roles and users
+*use livewire for realtime visualisation refresh possibly. Other use the web address to provide parameters to the viusualisation. to be discussed.
+*Autorised users have access to seeing what studies have been loaded and possibly update the studies.
+*Populate the site on github
+
+
+2-Some specs (in progress):
+
+*A standard user should be able to browse the results by selecting components and seeing the distribution of the values.
+*Visualisations can initially display one or two components. Visualisation will depend on whether components are discrete or continuous values
+*statistics will at some point be added to visualisations
+*Visualisations may have some filtering components
+*Admin interface will allow users to add new studies, see what is installed, etc... Maybe a table for this will be needed
+*A search box could be useful for many cases (finding components, etc..).
+*The system should allow making calls to python scripts so that machine learning algorithms can be run. This does not have to be implemented now but we must be aware of this.
+*Consider policies and store requests (validation)
+
+3-Tables needed (not exhaustive)
+*studies (A specific study)
+	-Donwloaded, etc...
+
+*components: A test component pointing to a study, a variable name, a comprehensible name (nullable), a range, a comment section possibly
+    -study
+    -type (demographic, blood samples, etc...)
+    -value_type (possibly, like range, discrete, etc..)
+    -number_of_different_values (nullable as optional)
+    -name
+    -comprehensible_name (nullable)
+    -range_min (nullable)
+    -range_max (nullable)
+    -comment (nullable)
+
+*results
+    -SEQN
+    -component_id
+    -value
+
+*users (already done)
+    -email address
+
+*roles (coming with Spatie)
+*user-roles (coming with )
+
+4-Working Plan starting from next week
+
+Alekhya
+*Design the database following the specs and having some of the requirements in mind. Study whether the columns of the created tables must have properties like nullable, unique, linked to another table, being indexed, having combined keys, default values, etc.. (possibly 3 days). Note the design can always be modified later on.
+*Add some basic spatie roles (~2 days): Installing Spatie, etc.. In terms of roles, we would like at least (Admin,Developer, Standard User). 
+*Think about how the interface should look like for downloading XPT files (e.g., indicating what is available for download, current download status, exported to mysql DB) and create a design. Note that indicating which dataset is available for download may be a difficult task that you may want to postpone for a bit. You will also need to use the nhanes_utils but Manisha may do this part. (1 Week)
+*
+
+Manisha
+*Have a look at the NHANES utils and try to run them. Try to see which data can be downloaded and try to download the entire dataset at the end. If your bandwidth is limited, try to do it from the uni or just do not do the last step (2 to 3 days)
+*Start creating some webpages in laravel for the visualisaitons. You will need to add a route in web.php file, create some blade components, etc... We do not want to use livewire yet but this may be needed in the long term. Use dummy data at teh beginning (3 to 4 days).
+*Create visualisations for 1 variable and 2 variables, showing the necessay statistics and chossing the right vis a particular case. 3 to 4 days.
+*Add statistics to the visualisations like averages per components,  std, and correlations and p-values for 2D values.
+*We can start trying to do some AI predictions after this but this could be more difficult.
+
+
+
+
+
