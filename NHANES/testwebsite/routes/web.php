@@ -42,10 +42,13 @@ Route::middleware('auth')->group(function () {
 Route::post('/visualization/chart-data', [VisualizationController::class, 'getChartData'])
     ->middleware(['auth', 'verified'])
     ->name('visualization.getChartData');
-Route::get('/insights', [VisualizationController::class, 'insights'])->name('visualization.insights');
+Route::get('/insights', [VisualizationController::class, 'insights'])
+    ->middleware(['auth', 'verified'])
+    ->name('visualization.insights');
 require __DIR__.'/auth.php';
 
 Route::get('/visualization/{varX}/{varY?}/{chartMode}', GetVisualisationData::class)
-     ->name('visualization');
+    ->middleware(['auth', 'verified'])
+    ->name('visualization');
 
 
