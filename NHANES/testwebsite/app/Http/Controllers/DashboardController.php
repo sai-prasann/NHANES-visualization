@@ -83,7 +83,9 @@ class DashboardController extends Controller
                 throw new \Exception('XPT to SQL conversion script not found.');
             }
 
-            $command = "python \"{$pythonScript}\" \"{$dataset->data_url}\" 2>&1";
+            $command = 'cd ' . escapeshellarg(storage_path('app'))
+                . ' && python ' . escapeshellarg($pythonScript)
+                . ' ' . escapeshellarg($dataset->data_url) . ' 2>&1';
             exec($command, $output, $returnVar);
 
             $fullOutput = implode("\n", $output);
@@ -92,7 +94,7 @@ class DashboardController extends Controller
                 throw new \Exception('Failed to process dataset: ' . $fullOutput);
             }
 
-            $filepath = "dataset.csv";
+           $filepath = storage_path('app/dataset.csv');
 
             $generate_row = function($id, $row) {
                 return [
