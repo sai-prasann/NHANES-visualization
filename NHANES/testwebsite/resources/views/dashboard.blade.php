@@ -9,7 +9,7 @@
                 @endif
 
                 <p>Download the datasets that you wish to work with.</p>
-                <p>Then head over to the <a href="{{ route('visualization.showChart') }}" style="color: blue; text-decoration: underline;">Visualization</a> page to create and discover.</p>
+                <p>Then head over to the <a href="{{ route('visualization.index') }}" style="color: blue; text-decoration: underline;">Visualization</a> page to create and discover.</p>
                 <br>
                 <h1 class="text-xl font-bold mb-6">Datasets</h1>
                 <div class="mb-6">
@@ -81,7 +81,7 @@
                                         @if (!$dataset->is_available)
                                         <form action="{{ route('dataset.download', $dataset->id) }}" method="POST">
                                         @csrf
-                                        <button onclick="downloadDataset({{ $dataset->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" style="background-color: #3b82f6; color: white;">
+                                       <button type="button" onclick="downloadDataset({{ $dataset->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" style="background-color: #3b82f6; color: white;">
                                             Download
                                         </button>
                                         </form>
