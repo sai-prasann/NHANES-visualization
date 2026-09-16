@@ -15,7 +15,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 ->name('dashboard');
 
 Route::patch('/dashboard/{id}/update-availability', [DashboardController::class, 'updateAvailability'])
-->middleware(['auth', 'verified'])
+->middleware(['auth', 'verified', 'role:admin'])
 ->name('update.availability');
 
 Route::post('/dataset/download/{id}', [DashboardController::class, 'downloadAndConvert'])
