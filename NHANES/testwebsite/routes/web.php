@@ -18,6 +18,7 @@ Route::patch('/dashboard/{id}/update-availability', [DashboardController::class,
 ->name('update.availability');
 
 Route::post('/dataset/download/{id}', [DashboardController::class, 'downloadAndConvert'])
+->middleware(['auth', 'verified'])
 ->name('dataset.download');
 
 Route::get('visualization', [VisualizationController::class, 'index'])
