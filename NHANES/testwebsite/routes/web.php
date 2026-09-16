@@ -26,6 +26,7 @@ Route::get('visualization', [VisualizationController::class, 'index'])
 ->name('visualization.index');
 
 Route::post('/visualization/chart', [VisualizationController::class, 'showChart'])
+->middleware(['auth', 'verified'])
 ->name('visualization.showChart');
 
 Route::post('visualization/visualize', [VisualizationController::class, 'visualize'])
