@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::post('/visualization/chart-data', [VisualizationController::class, 'getChartData'])->name('visualization.getChartData');
+Route::post('/visualization/chart-data', [VisualizationController::class, 'getChartData'])
+    ->middleware(['auth', 'verified'])
+    ->name('visualization.getChartData');
 Route::get('/insights', [VisualizationController::class, 'insights'])->name('visualization.insights');
 require __DIR__.'/auth.php';
 
